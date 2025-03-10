@@ -18,4 +18,19 @@ export default {
     },
 
     plugins: [forms],
+
+    module : {
+        content: [
+          './resources/**/*.blade.php',
+          './resources/**/*.js',
+        ],
+        theme: {
+          extend: {
+            colors: {
+              'brown-600': '#8B4513',
+            },
+          },
+        },
+        plugins: [],
+      }
 };
