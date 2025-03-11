@@ -31,7 +31,8 @@ Esta aplicação permite que:
 1. Clone o repositório:
    `bash
     git clone https://github.com/smpsandro1239
-empregabilidade-amar-terra-verde.git
+empregabilidade-amar-terra-verde
+
     cd empregabilidade-amar-terra-verde
     `
    Instale dependências:
