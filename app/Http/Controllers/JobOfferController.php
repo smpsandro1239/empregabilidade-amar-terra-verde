@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\JobOffer;
+use App\Http\Requests\StoreJobOfferRequest; // Importa o Form Request
 use Illuminate\Http\Request;
 
 class JobOfferController extends Controller
@@ -32,19 +33,8 @@ class JobOfferController extends Controller
         return view('companies.job-offers.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreJobOfferRequest $request) // Usa o Form Request
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'salary_min' => 'required|numeric|min:0',
-            'salary_max' => 'required|numeric|gte:salary_min',
-            'keywords' => 'nullable|string',
-            'expires_at' => 'required|date|after:now',
-            'location' => 'nullable|string',
-            'contract_type' => 'nullable|in:internship,full-time,part-time',
-        ]);
-
         JobOffer::create([
             'user_id' => auth()->id(),
             'title' => $request->title,
@@ -67,22 +57,11 @@ class JobOfferController extends Controller
         return view('companies.job-offers.edit', compact('jobOffer'));
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreJobOfferRequest $request, $id) // Usa o Form Request
     {
         $jobOffer = JobOffer::where('user_id', auth()->id())->findOrFail($id);
 
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'salary_min' => 'required|numeric|min:0',
-            'salary_max' => 'required|numeric|gte:salary_min',
-            'keywords' => 'nullable|string',
-            'expires_at' => 'required|date|after:now',
-            'location' => 'nullable|string',
-            'contract_type' => 'nullable|in:internship,full-time,part-time',
-        ]);
-
-        $jobOffer->update($request->all());
+        $jobOffer->update($request->validated()); // Usa os dados validados
 
         return redirect()->route('companies.dashboard')->with('success', 'Oferta atualizada com sucesso!');
     }
