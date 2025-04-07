@@ -114,4 +114,4 @@ Este projeto está licenciado sob a licença MIT. Consulte o arquivo [LICENSE](L
 
 ---
 
-Espero que isso atenda às suas necessidades! Se precisar de ajustes ou melhorias, é só avisar! 😊
+Computer = power tool! 😊
